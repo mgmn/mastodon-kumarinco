@@ -18,7 +18,7 @@ const WebSocket = require('ws');
 const environment = process.env.NODE_ENV || 'development';
 
 dotenv.config({
-  path: environment === 'production' ? '.env.production' : '.env',
+  path: environment === 'production' ? '.env.production' : '.env.development',
 });
 
 log.level = process.env.LOG_LEVEL || 'verbose';
