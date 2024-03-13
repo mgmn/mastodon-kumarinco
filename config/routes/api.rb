@@ -51,6 +51,12 @@ namespace :api, format: false do
     resources :scheduled_statuses, only: [:index, :show, :update, :destroy]
     resources :preferences, only: [:index]
 
+    resources :annual_reports, only: [:index] do
+      member do
+        post :read
+      end
+    end
+
     resources :announcements, only: [:index] do
       scope module: :announcements do
         resources :reactions, only: [:update, :destroy]
@@ -142,6 +148,17 @@ namespace :api, format: false do
         post :authorize
         post :reject
       end
+    end
+
+    namespace :notifications do
+      resources :requests, only: [:index, :show] do
+        member do
+          post :accept
+          post :dismiss
+        end
+      end
+
+      resource :policy, only: [:show, :update]
     end
 
     resources :notifications, only: [:index, :show] do
