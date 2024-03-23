@@ -12,6 +12,7 @@ import { HotKeys } from 'react-hotkeys';
 
 import EditIcon from '@/material-icons/400-24px/edit.svg?react';
 import FlagIcon from '@/material-icons/400-24px/flag-fill.svg?react';
+import HeartBrokenIcon from '@/material-icons/400-24px/heart_broken-fill.svg?react';
 import HomeIcon from '@/material-icons/400-24px/home-fill.svg?react';
 import InsertChartIcon from '@/material-icons/400-24px/insert_chart.svg?react';
 import PersonIcon from '@/material-icons/400-24px/person-fill.svg?react';
@@ -26,6 +27,7 @@ import { WithRouterPropTypes } from 'mastodon/utils/react_router';
 
 import FollowRequestContainer from '../containers/follow_request_container';
 
+import RelationshipsSeveranceEvent from './relationships_severance_event';
 import Report from './report';
 
 const messages = defineMessages({
@@ -358,6 +360,30 @@ class Notification extends ImmutablePureComponent {
     );
   }
 
+  renderRelationshipsSevered (notification) {
+    const { intl, unread } = this.props;
+
+    if (!notification.get('event')) {
+      return null;
+    }
+
+    return (
+      <HotKeys handlers={this.getHandlers()}>
+        <div className={classNames('notification notification-severed-relationships focusable', { unread })} tabIndex={0} aria-label={notificationForScreenReader(intl, intl.formatMessage(messages.adminReport, { name: notification.getIn(['event', 'target_name']) }), notification.get('created_at'))}>
+          <div className='notification__message'>
+            <Icon id='heart_broken' icon={HeartBrokenIcon} />
+
+            <span title={notification.get('created_at')}>
+              <FormattedMessage id='notification.severed_relationships' defaultMessage='Relationships with {name} severed' values={{ name: notification.getIn(['event', 'target_name']) }} />
+            </span>
+          </div>
+
+          <RelationshipsSeveranceEvent event={notification.get('event')} />
+        </div>
+      </HotKeys>
+    );
+  }
+
   renderAdminSignUp (notification, account, link) {
     const { intl, unread } = this.props;
 
@@ -429,6 +455,8 @@ class Notification extends ImmutablePureComponent {
       return this.renderUpdate(notification, link);
     case 'poll':
       return this.renderPoll(notification, account);
+    case 'severed_relationships':
+      return this.renderRelationshipsSevered(notification);
     case 'admin.sign_up':
       return this.renderAdminSignUp(notification, account, link);
     case 'admin.report':
