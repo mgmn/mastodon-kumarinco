@@ -129,7 +129,6 @@ const InnerTimeline: FC<{ accountId: string; multiColumn: boolean }> = ({
         emptyMessage={<EmptyMessage accountId={accountId} />}
         bindToDocument={!multiColumn}
         timelineId='account'
-        withCounters
         className={classNames(classes.statusWrapper)}
         statusProps={{ headerRenderFn: renderPinnedStatusHeader }}
       />
