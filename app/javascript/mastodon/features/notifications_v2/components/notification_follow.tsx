@@ -50,13 +50,13 @@ export const NotificationFollow: React.FC<{
   const label = useMemo(
     () => {
       if (count === 1)
-      return (
-        <FormattedMessage
-          id='notification.follow'
-          defaultMessage='{name} followed you'
-          values={{ name: displayedName }}
-        />
-      );
+        return (
+          <FormattedMessage
+            id='notification.follow'
+            defaultMessage='{name} followed you'
+            values={{ name: displayedName }}
+          />
+        );
 
       return (
         <FormattedMessage

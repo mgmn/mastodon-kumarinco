@@ -36,13 +36,13 @@ export const NotificationFavourite: React.FC<{
   const label = useMemo(
     () => {
       if (count === 1)
-      return (
-        <FormattedMessage
-          id='notification.favourite'
-          defaultMessage='{name} favorited your post'
-          values={{ name: displayedName }}
-        />
-      );
+        return (
+          <FormattedMessage
+            id='notification.favourite'
+            defaultMessage='{name} favorited your post'
+            values={{ name: displayedName }}
+          />
+        );
 
       if (seeMoreHref)
         return (

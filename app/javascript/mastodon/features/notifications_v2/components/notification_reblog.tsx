@@ -36,13 +36,13 @@ export const NotificationReblog: React.FC<{
   const label = useMemo(
     () => {
       if (count === 1)
-      return (
-        <FormattedMessage
-          id='notification.reblog'
-          defaultMessage='{name} boosted your status'
-          values={{ name: displayedName }}
-        />
-      );
+        return (
+          <FormattedMessage
+            id='notification.reblog'
+            defaultMessage='{name} boosted your status'
+            values={{ name: displayedName }}
+          />
+        );
 
       if (seeMoreHref)
         return (
