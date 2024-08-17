@@ -5,6 +5,7 @@ on:
     branches:
       - 'main'
       - 'stable-*'
+      - 'dev/main'
     paths:
       - 'Gemfile*'
       - '.rubocop*.yml'

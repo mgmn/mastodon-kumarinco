@@ -6,6 +6,7 @@ on:
     branches:
       - 'main'
       - 'stable-*'
+      - 'dev/main'
   pull_request:
 
 env:
