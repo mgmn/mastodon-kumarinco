@@ -39,7 +39,7 @@ export const NotificationReblog: React.FC<{
         return (
           <FormattedMessage
             id='notification.reblog'
-            defaultMessage='{name} boosted your status'
+            defaultMessage='{name} boosted your post'
             values={{ name: displayedName }}
           />
         );
