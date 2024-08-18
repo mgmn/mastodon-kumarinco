@@ -16,10 +16,7 @@ import Status from 'mastodon/containers/status_container';
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
 
 import { DisplayedName } from './displayed_name';
-
-export type LabelRenderer = (
-  values: Record<string, React.ReactNode>,
-) => JSX.Element;
+import type { LabelRenderer } from './notification_group_with_status';
 
 export const NotificationWithStatus: React.FC<{
   type: string;
@@ -27,6 +24,7 @@ export const NotificationWithStatus: React.FC<{
   iconId: string;
   accountIds: string[];
   statusId: string | undefined;
+  count: number;
   labelRenderer: LabelRenderer;
   unread: boolean;
 }> = ({
@@ -34,6 +32,7 @@ export const NotificationWithStatus: React.FC<{
   iconId,
   accountIds,
   statusId,
+  count,
   labelRenderer,
   type,
   unread,
@@ -41,11 +40,8 @@ export const NotificationWithStatus: React.FC<{
   const dispatch = useAppDispatch();
 
   const label = useMemo(
-    () =>
-      labelRenderer({
-        name: <DisplayedName accountIds={accountIds} />,
-      }),
-    [labelRenderer, accountIds],
+    () => labelRenderer(<DisplayedName accountIds={accountIds} />, count),
+    [labelRenderer, accountIds, count],
   );
 
   const isPrivateMention = useAppSelector(
