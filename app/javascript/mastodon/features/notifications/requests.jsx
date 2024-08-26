@@ -130,7 +130,7 @@ const SelectRow = ({selectAllChecked, toggleSelectAll, selectedItems, selectionM
       >
         <button className='dropdown-button column-header__select-row__select-menu' disabled={selectedItems.length === 0}>
           <span className='dropdown-button__label'>
-            {selectedCount} selected
+            <FormattedMessage id='notification_requests.selected' defaultMessage='{count, plural, one {# selected} other {# selected}}' values={{ count: selectedCount }} />
           </span>
           <Icon id='down' icon={ArrowDropDownIcon} />
         </button>

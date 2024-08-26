@@ -544,6 +544,7 @@
   "notification_requests.confirm_dismiss_multiple.title": "Dismiss notification requests?",
   "notification_requests.dismiss": "Dismiss",
   "notification_requests.dismiss_multiple": "{count, plural, one {Dismiss # request…} other {Dismiss # requests…}}",
+  "notification_requests.selected": "{count, plural, one {# selected} other {# selected}}",
   "notification_requests.edit_selection": "Edit",
   "notification_requests.exit_selection": "Done",
   "notification_requests.explainer_for_limited_account": "Notifications from this account have been filtered because the account has been limited by a moderator.",
